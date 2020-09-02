@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
@@ -16,7 +15,6 @@ export default function Login() {
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
 
   function validateForm() {
     return fields.email.length > 0 && fields.password.length > 0;
@@ -30,7 +28,6 @@ export default function Login() {
     try {
       await Auth.signIn(fields.email, fields.password);
       userHasAuthenticated(true);
-      history.push("/");
     } catch (e) {
       onError(e);
       setIsLoading(false);
